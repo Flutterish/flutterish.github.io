@@ -263,4 +263,8 @@ window.addEventListener( 'load', () => {
 	window.scrollTop = function () {
 		window.scrollTo( { top: 0, behavior: 'smooth' } );
 	}
+
+	setInterval( () => {
+		Get( '/ack' );
+	}, 5000 );
 })();

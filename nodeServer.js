@@ -2,6 +2,9 @@ const express = require( 'express' );
 const path = require( 'path' );
 const app = express();
 
+app.get( '/ack', (req, res) => {
+    res.send( 'ack' );
+} );
 app.get( '/', (req, res) => {
     res.redirect( '/Home' );
 } );
