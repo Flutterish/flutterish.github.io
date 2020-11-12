@@ -1,0 +1,400 @@
+body {
+  --accent-pink: #ff99ff;
+  --accent-pink-active: #ff66ff;
+  --accent-red: #ff5858;
+  --accent-red-active: #ff2525;
+  --accent-yellow: #ffe4b3;
+  --accent-yellow-active: #ffd280;
+  --accent-green: #7ad37a;
+  --accent-green-active: #53c653;
+  --accent-purple: #dd3cdd;
+  --accent-purple-active: #c423c4;
+  --accent-orange: #ffc04d;
+  --accent-orange-active: #ffae1a;
+  --accent-dark: #737373;
+  --accent-dark-active: #595959;
+  --accent: #ff99ff;
+  --accent-active: #ff66ff;
+}
+
+@font-face {
+  font-family: First;
+  src: url("/Fonts/First.ttf.woff");
+}
+
+@font-face {
+  font-family: Odin;
+  src: url("/Fonts/Odin-Rounded.ttf.woff");
+}
+
+@font-face {
+  font-family: 'Odin Light';
+  src: url("/Fonts/Odin-Rounded-Light.ttf.woff");
+}
+
+@font-face {
+  font-family: Quicksand;
+  src: url("/Fonts/Quicksand-Medium.ttf.woff");
+}
+
+body {
+  font-family: Quicksand, First, "Odin Light", Odin;
+  background-color: #44444f;
+  margin: 0;
+  color: #d9d9d9;
+  background-image: url("/background.png");
+  min-height: calc( 100vh - 105px);
+  margin-bottom: 200px;
+}
+
+div {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+#headerSpacer {
+  height: 60px;
+}
+
+#header {
+  height: 60px;
+  width: calc( 72vw - 6px);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  min-width: 594px;
+  background-color: #3f3f4a;
+}
+
+.button {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #3f3f4a;
+  cursor: pointer;
+  user-select: none;
+  width: max-content;
+}
+
+.button:hover {
+  letter-spacing: 2px;
+  background-color: #2c2c34;
+  color: var(--accent);
+}
+
+.button:active {
+  letter-spacing: 1px;
+  color: var(--accent-active);
+  transition: 0.05s;
+}
+
+[onclick] {
+  cursor: pointer;
+}
+
+#squeeze {
+  width: 72vw;
+  min-width: 600px;
+  margin: auto;
+  padding-top: 0;
+  background-color: #44444f;
+}
+
+#content {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 10px;
+  background-color: #383841;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.flex.right {
+  flex-direction: row-reverse;
+}
+
+.flex.spread {
+  justify-content: space-evenly;
+}
+
+.flex.spread > * {
+  flex: 1 1 0;
+}
+
+.flex.centered {
+  justify-content: center;
+}
+
+.flex.centered > * {
+  margin: auto;
+}
+
+.flex.centered > * {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+body {
+  transition: 0.2s;
+}
+
+* {
+  transition: inherit;
+}
+
+.button > .selector {
+  width: 0%;
+  padding: 0;
+  height: 3px;
+  background-color: var(--accent);
+  margin: auto;
+}
+
+.button:hover > .selector {
+  background-color: var(--accent);
+}
+
+.button > .selector.selected {
+  width: 100%;
+}
+
+#titlespace {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+#footer {
+  background-color: #383841;
+  margin: 15px;
+  padding: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 0.8em;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  transition: color 0.6s, letter-spacing 0.2s;
+}
+
+#footer * {
+  flex-shrink: 1;
+  text-align: center;
+}
+
+u {
+  color: var(--accent);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-line: none;
+}
+
+a:hover {
+  color: var(--accent-active);
+  letter-spacing: 2px;
+}
+
+img.logo {
+  height: 22px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+img.big.logo {
+  height: 35px;
+}
+
+img.inline.logo {
+  height: 1em;
+  display: inline;
+}
+
+code {
+  background-color: #2c2c34;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+}
+
+.button + code {
+  border-top-left-radius: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
+  width: max-content;
+  cursor: pointer;
+}
+
+*:is(h1, h2, h3, h4, h5, h6):hover {
+  color: var(--accent-active);
+}
+
+ul {
+  margin-top: 0;
+}
+
+[theme="pink"] {
+  --accent: #ff99ff;
+  --accent-active: #ff66ff;
+}
+
+[theme="dark"] {
+  --accent: #737373;
+  --accent-active: #595959;
+}
+
+[theme="green"] {
+  --accent: #7ad37a;
+  --accent-active: #53c653;
+}
+
+[theme="orange"] {
+  --accent: #ffc04d;
+  --accent-active: #ffae1a;
+}
+
+[theme="purple"] {
+  --accent: #dd3cdd;
+  --accent-active: #c423c4;
+}
+
+[theme="red"] {
+  --accent: #ff5858;
+  --accent-active: #ff2525;
+}
+
+[theme="yellow"] {
+  --accent: #ffe4b3;
+  --accent-active: #ffd280;
+}
+
+[theme="error"] {
+  --accent: #737373;
+  --accent-active: #595959;
+}
+
+[theme="home"] {
+  --accent: #ff99ff;
+  --accent-active: #ff66ff;
+}
+
+[theme="gallery"] {
+  --accent: #ff5858;
+  --accent-active: #ff2525;
+}
+
+[theme="info"] {
+  --accent: #ffc04d;
+  --accent-active: #ffae1a;
+}
+
+[theme="contact"] {
+  --accent: #ffe4b3;
+  --accent-active: #ffd280;
+}
+
+[theme="sign in"] {
+  --accent: #7ad37a;
+  --accent-active: #53c653;
+}
+
+#titlespace .fas {
+  min-width: 27px;
+}
+
+.post {
+  background-color: #313139;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-between;
+  text-align: center;
+  min-width: 350px;
+  max-width: 500px;
+  margin: 10px;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-color: var(--accent);
+  width: 90%;
+  border-style: double;
+}
+
+.fill {
+  width: 100%;
+  padding: 0;
+}
+
+.flex.wrap {
+  flex-wrap: wrap;
+}
+
+.flex.wrap > * {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.post img {
+  width: 100%;
+  border-radius: 15px;
+  min-height: 400px;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#content > img {
+  margin: auto;
+  display: block;
+}
+
+.hljs-string, .hljs-meta-string {
+  color: #81d4fa !important;
+}
+
+.hljs-keyword, .hljs-built_in, .hljs-literal, .hljs-number {
+  color: #ffa000 !important;
+}
+
+.hljs-title {
+  color: #d9d9d9 !important;
+}
+
+.hljs-meta {
+  color: #7986cb !important;
+}
+
+.post > *:last-child {
+  margin-top: auto;
+}
+
+*:is(.hljs-string, .hljs-meta-string, .hljs-keyword, .hljs-built_in, .hljs-literal, .hljs-number, .hljs-title):hover {
+  letter-spacing: 2px;
+}
+
+pre .button {
+  font-family: Quicksand, First, "Odin Light", Odin;
+  margin: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #2c2c34;
+  font-size: 0.8em;
+}

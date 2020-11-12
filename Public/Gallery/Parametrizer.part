@@ -1,0 +1,43 @@
+
+<title><i class="fas fa-forward"></i> | Parametrizer</title>
+<meta title="Parametrizer">
+
+<md>
+    Parametrizer is, I think one of the nicest syntax parsers I've made.
+
+    The rules are simple, and you probably already know them:
+    * `&lt;Name&gt;` means required. Name is the name of that part
+    * `[Name]` means optional
+    * `(stuff)` is a structural group
+    * `A|B` means either `A` or `B`
+    * `/stuff/` is a regex match
+
+    Additionally:
+    * `&lt;Name:Description&gt;` allows you to describe that element inline
+    * `&lt;Name=stuff&gt;` allows to describe the syntax of the element
+    * `&lt;Name=stuff:Desctiption&gt;` and `&lt;Name:Description=stuff&gt;` is allowed too
+
+    The engine allows you to refer to parameters by name in 2 ways:
+    * `Name = value` assign style
+    * `-Name value` flag style
+
+    The parameters do not need to be ordered, as long as all required ones are set.
+
+    This seemingly simple syntax allows you to describe a lot of stuff!
+
+    Take a look at these commands:
+    * `cd &lt;path&gt;` - `cd C:/Users/Perigee`
+    * `dir [path]` - `dir`
+    * `ffmpeg &lt;i&gt; &lt;output&gt;` - `ffmpeg -i input.flv output.mp4`
+    * `run &lt;path&gt; [mode=safe|admin]` - `run mode=safe ./NotAVirus.png.exe`
+
+    I think they are very readable and in line with the standard way we describe CLI syntax.
+    This project was one of the first I decided to use [unit tests](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019) on
+    as I decided that this very well could easily break.
+</md>
+<hr>
+<img src="/Gallery/Parametrizer_tests.jpg">
+<hr>
+<md>
+    It turned out pretty well and saved me exactly 1 time while reworking the parameter order.
+</md>

@@ -1,0 +1,104 @@
+
+<title><i class="fas fa-camera"></i> | Gallery</title>
+<meta title="Gallery">
+
+Fetching posts...
+<script>
+(function(){
+    var count = 0;
+    var posts;
+
+    Get( '/Gallery/posts.json' ).then( d => {
+        d = JSON.parse( d );
+        content.innerHTML = '';
+        posts = document.createElement( 'div' );
+        posts.classList.add( 'flex', 'wrap', 'fill', 'spread' );
+        content.appendChild( posts );
+        d.reverse();
+        for ( let post of d ) {
+            AppendPost( post );
+        }
+
+        let flex = document.createElement( 'div' );
+        flex.classList.add( 'flex', 'centered' );
+        flex.innerHTML = `<a>No more posts to load!</a>`;
+        content.appendChild( document.createElement( 'hr' ) );
+        content.appendChild( flex );
+    } ).catch( DisplayError );
+
+    function AppendPost ( post ) {
+        let el = document.createElement( 'div' );
+        el.classList.add( 'post' );
+        posts.appendChild( el );
+        el.innerHTML = '<p>Loading Post...</p>';
+        count++;
+
+        LoadPost( el, post );
+    }
+
+    function LoadPost ( el, post, retryCount = 0 ) {
+        let url = `/Gallery/${post.file}`;
+        let path = `${url}.part`;
+
+        Get( path ).then( doc => {
+            LoadPreview( post, el, doc );
+        } ).catch( e => {
+            el.innerHTML = '';
+
+            let text = document.createElement( 'div' );
+            text.innerHTML = `Whoops! Something went wrong while loading the preview for "${post.file}". Sorry about that.<br>`;
+
+            let retryButton = document.createElement( 'div' );
+            retryButton.classList.add( 'button' );
+            retryButton.innerText = 'Try Again?';
+            if ( retryCount ) {
+                retryButton.innerHTML += ` <a theme="dark">( Retried ${retryCount}x )</a>`;
+            }
+            retryButton.onclick = () => LoadPost( el, post, retryCount + 1 );
+
+            el.appendChild( text );
+            el.appendChild( retryButton );
+        } );
+    }
+
+    function LoadPreview ( post, el, page ) {
+        let url = `/Gallery/${post.file}`;
+
+        el.innerHTML = '';
+
+        let html = document.createElement( 'div' );
+        html.innerHTML = page;
+
+        let title = document.createElement( 'h3' );
+        if ( html.querySelector( 'title' ) ) {
+            title.innerHTML = html.querySelector( 'title' ).innerText;
+            html.querySelector( 'title' ).remove();
+        }
+        else {
+            title.innerHTML = post.file;
+        }
+        title.onclick = () => loadContent( url );
+        el.appendChild( title );
+
+        if ( html.querySelector( 'img' ) ) {
+            let img = document.createElement( 'img' );
+            img.setAttribute( 'src', html.querySelector( 'img' ).getAttribute( 'src' ) );
+            el.appendChild( img );
+            el.appendChild( document.createElement( 'hr' ) );
+        }
+
+        let content = document.createElement( 'div' );
+        let text = html.innerText.replace( /&gt;/g, '>' ).replace( /&lt;/g, '<' ).replace( /\n/g, ' ' );
+        if ( text.length > 300 ) text = text.substr( 0, 297 ) + '...';
+        content.innerText = text;
+        el.appendChild( content );
+
+        let link = document.createElement( 'a' );
+        link.innerText = 'Read More';
+        link.onclick = () => loadContent( url );
+        el.appendChild( link );
+    }
+})();
+
+// TODO this, but in the header
+</script>

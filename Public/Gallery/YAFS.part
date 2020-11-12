@@ -1,0 +1,38 @@
+
+<title><i class="fas fa-folder"></i> | YAFS</title>
+<meta title="YAFS">
+
+<md>
+    YAFS stands for Yet Another File System.
+
+    Its not that there aren't enough virtual file systems on [github](https://github.com/), but I wanted to try making my own.
+    Its goal is to abstract away all kinds of file systems into one standardized API.
+    Basically, it creates a virtual skeleton around visited paths of a `VirtualFileSystem`
+    where each directory is either virtual or real. You of course can add virtual directories to the physical FS,
+    which in turn can be a link into a different file system. It's file systems all the way down.
+    ```cs
+    static void Main () {
+        var fs = new Virtualized&lt;PhysicalFileSystem&gt;();
+        fs.CreateVirtualDirectory( "C:/My Virtual Directory" );
+        fs.CreateDirectory( "C:/Users/Charm/Desktop/Not A Virtual One" );
+    }
+    ```
+    The project is not quite done yet, but if I need to work with files, I'll gladly
+    use it over the built-in FS C# provides.
+
+    A fun thing about it is that you can get a path relative to a given directory like `./objects/cube.json`
+    and then use it on another directory, allowing you to easily deep copy a directory.
+
+    Another nice thing is how paths work - unlike windows - they allow all characters to be an identifier.
+    This approach requires a mask to know what is a name and what is a special symbol, which is why
+    I made several ways to parse Unix and Windows paths to this kind.
+</md>
+<hr>
+<img src="/Gallery/YAFS.jpg">
+<hr>
+<md>
+    One of YAFS goals was to be [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). This is why the only thing you
+    need to extend to create a new file system type is to extend the file system class, you don't need
+    to create any special class for its files. You might notice every method above has 2 variants, but if you only
+    provide one kind, `AsynchronousFileSystem` and `SynchronousFileSystem` classes autoimplement the other type.
+</md>

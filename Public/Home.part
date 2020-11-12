@@ -1,0 +1,15 @@
+
+<title><i class="fas fa-home"></i> | Home</title>
+<meta title="Home">
+
+Welcome to my website! <br>
+Visit <a onclick="loadContent('/Info')" theme="info"><i class="fas fa-question"></i> Info</a> for a quick introduction. <br>
+Or jump straight into the <a onclick="loadContent('/Gallery')" theme="gallery"><i class="fas fa-camera"></i> Gallery</a> to see some of my personal projects. <br>
+<br>
+<h3><i class="fas fa-keyboard"></i> | Tips, Tricks & Fun Facts</h3>
+You can click on any header to scroll it nicely into view. Try the one just above! <br>
+Clicking on the logo will bring you to the <a theme="home" onclick="window.scrollTop(); SetTheme('pink');"><i class="fas fa-home"></i> Home</a> page. <br>
+Each main subsite has its own accent colour - <a theme="pink" onclick="SetTheme('pink')"><i class="fas fa-tint"></i> Pink,</a> <a theme="red" onclick="SetTheme('red')"><i class="fas fa-tint"></i> Red,</a> <a theme="orange" onclick="SetTheme('orange')"><i class="fas fa-tint"></i> Orange,</a> <a theme="yellow" onclick="SetTheme('yellow')"><i class="fas fa-tint"></i> Yellow</a> and <a theme="green" onclick="SetTheme('green')"><i class="fas fa-tint"></i> Green.</a> 
+Legends say there is also a hidden <secretTheme onclick="SetTheme('dark')">theme</secretTheme> - shhhh! <br>
+My name is <a>Perigee</a> because I might be the lowest I'll ever be, but I'm the lowest I'll ever be! <br>
+I created this website without a physical keyboard - I used only the onscreen one! Ouch...

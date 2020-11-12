@@ -1,0 +1,358 @@
+
+$headerHeight: 60px
+$pageWidth: 72vw
+
+$themeMain: #44444f
+$themeAlt: darken( $themeMain, 2 )
+$themeDarker: darken( $themeMain, 5 )
+$themeActive: darken( $themeMain, 10 )
+$textMain: darken( white, 15 )
+
+$themeAccentPink: lighten( magenta, 30 )
+$themeAccentPinkActive: darken( $themeAccentPink, 10 )
+
+$themeAccentRed: lighten( darkred, 40 )
+$themeAccentRedActive: darken( $themeAccentRed, 10 )
+
+$themeAccentYellow: lighten( orange, 35 )
+$themeAccentYellowActive: darken( $themeAccentYellow, 10 )
+
+$themeAccentGreen: desaturate( lighten( green, 40 ), 50 )
+$themeAccentGreenActive: darken( $themeAccentGreen, 10 )
+
+$themeAccentPurple: desaturate( lighten( purple, 30 ), 30 )
+$themeAccentPurpleActive: darken( $themeAccentPurple, 10 )
+
+$themeAccentOrange: saturate( lighten( orange, 15 ), 70 )
+$themeAccentOrangeActive: darken( $themeAccentOrange, 10 )
+
+$themeAccentDark: lighten( black, 45 )
+$themeAccentDarkActive: darken( $themeAccentDark, 10 )
+	
+body
+	--accent-pink: #{$themeAccentPink}
+	--accent-pink-active: #{$themeAccentPinkActive}
+
+	--accent-red: #{$themeAccentRed}
+	--accent-red-active: #{$themeAccentRedActive}
+
+	--accent-yellow: #{$themeAccentYellow}
+	--accent-yellow-active: #{$themeAccentYellowActive}
+
+	--accent-green: #{$themeAccentGreen}
+	--accent-green-active: #{$themeAccentGreenActive}
+
+	--accent-purple: #{$themeAccentPurple}
+	--accent-purple-active: #{$themeAccentPurpleActive}
+
+	--accent-orange: #{$themeAccentOrange}
+	--accent-orange-active: #{$themeAccentOrangeActive}
+
+	--accent-dark: #{$themeAccentDark}
+	--accent-dark-active: #{$themeAccentDarkActive}
+
+	--accent: #{$themeAccentPink}
+	--accent-active: #{$themeAccentPinkActive}
+
+@font-face
+	font-family: First
+	src: url( '/Fonts/First.ttf.woff' )
+
+@font-face
+	font-family: Odin
+	src: url( '/Fonts/Odin-Rounded.ttf.woff' )
+
+@font-face
+	font-family: 'Odin Light'
+	src: url( '/Fonts/Odin-Rounded-Light.ttf.woff' )
+
+@font-face
+	font-family: Quicksand
+	src: url( '/Fonts/Quicksand-Medium.ttf.woff' )
+
+$fonts: Quicksand, First, 'Odin Light', Odin;
+
+body
+	font-family: $fonts
+	background-color: $themeMain
+	margin: 0
+	color: $textMain
+	background-image: url( '/background.png' )
+	min-height: calc( 100vh - 105px )
+	margin-bottom: 200px
+
+div
+	padding: 3px
+	border-radius: 5px
+
+#headerSpacer
+	height: $headerHeight
+#header
+	height: $headerHeight
+	width: calc( 72vw - 6px )
+	position: fixed
+	display: flex
+	align-items: center
+	min-width: 600px - 6px
+	background-color: $themeAlt
+
+.button
+	margin-left: 10px
+	margin-right: 10px
+	background-color: $themeAlt
+	cursor: pointer
+	user-select: none
+	width: max-content
+
+.button:hover
+	letter-spacing: 2px
+	background-color: $themeActive
+	color: var( --accent )
+
+.button:active
+	letter-spacing: 1px
+	color: var( --accent-active )
+	transition: 0.05s
+
+[onclick]
+	cursor: pointer
+
+#squeeze
+	width: $pageWidth
+	min-width: 600px
+	margin: auto
+	padding-top: 0
+	background-color: $themeMain
+
+#content
+	margin-left: 15px
+	margin-right: 15px
+	padding: 10px
+	background-color: $themeDarker
+	border-bottom-left-radius: 0
+	border-bottom-right-radius: 0
+
+.flex
+	display: flex
+	align-items: stretch
+	flex-grow: 1
+
+.flex.right
+	flex-direction: row-reverse
+
+.flex.spread
+	justify-content: space-evenly
+
+.flex.spread > *
+	flex: 1 1 0
+
+.flex.centered
+	justify-content: center
+
+.flex.centered > *
+	margin: auto
+
+.flex.centered > *
+	margin-left: 15px
+	margin-right: 15px
+
+body
+	transition: 0.2s
+
+*
+	transition: inherit
+
+.button > .selector
+	width: 0%
+	padding: 0
+	height: 3px
+	background-color: var( --accent )
+	margin: auto
+
+.button:hover > .selector
+	background-color: var( --accent )
+
+.button > .selector.selected
+	width: 100%
+
+#titlespace
+	margin-left: 15px
+	margin-right: 15px
+
+#footer
+	background-color: $themeDarker
+	margin: 15px
+	padding: 10px
+	padding-top: 2px
+	padding-bottom: 2px
+	font-size: 0.8em
+	border-top-right-radius: 0
+	border-top-left-radius: 0
+
+	transition: color 0.6s, letter-spacing 0.2s
+
+	*
+		flex-shrink: 1
+		text-align: center
+
+u
+	color: var( --accent )
+
+a
+	color: var( --accent )
+	text-decoration-line: none
+
+a:hover
+	color: var( --accent-active )
+	letter-spacing: 2px
+
+img.logo
+	height: 22px
+	margin-right: 5px
+	margin-left: 5px
+
+img.big.logo
+	height: 35px
+
+img.inline.logo
+	height: 1em
+	display: inline
+
+code
+	background-color: $themeActive
+	border-radius: 5px
+	padding: 2px
+
+pre code
+	display: block
+	padding: 5px
+	overflow: auto
+
+.button + code
+	border-top-left-radius: 0
+
+h1, h2, h3, h4, h5, h6
+	color: var( --accent )
+	width: max-content
+	cursor: pointer
+
+*:is(h1, h2, h3, h4, h5, h6):hover
+	color: var( --accent-active )
+
+ul
+	margin-top: 0
+
+[theme="pink"]
+	--accent: #{$themeAccentPink}
+	--accent-active: #{$themeAccentPinkActive}
+[theme="dark"]
+	--accent: #{$themeAccentDark}
+	--accent-active: #{$themeAccentDarkActive}
+[theme="green"]
+	--accent: #{$themeAccentGreen}
+	--accent-active: #{$themeAccentGreenActive}
+[theme="orange"]
+	--accent: #{$themeAccentOrange}
+	--accent-active: #{$themeAccentOrangeActive}
+[theme="purple"]
+	--accent: #{$themeAccentPurple}
+	--accent-active: #{$themeAccentPurpleActive}
+[theme="red"]
+	--accent: #{$themeAccentRed}
+	--accent-active: #{$themeAccentRedActive}
+[theme="yellow"]
+	--accent: #{$themeAccentYellow}
+	--accent-active: #{$themeAccentYellowActive}
+
+[theme="error"]
+	--accent: #{$themeAccentDark}
+	--accent-active: #{$themeAccentDarkActive}
+[theme="home"]
+	--accent: #{$themeAccentPink}
+	--accent-active: #{$themeAccentPinkActive}
+[theme="gallery"]
+	--accent: #{$themeAccentRed}
+	--accent-active: #{$themeAccentRedActive}
+[theme="info"]
+	--accent: #{$themeAccentOrange}
+	--accent-active: #{$themeAccentOrangeActive}
+[theme="contact"]
+	--accent: #{$themeAccentYellow}
+	--accent-active: #{$themeAccentYellowActive}
+[theme="sign in"]
+	--accent: #{$themeAccentGreen}
+	--accent-active: #{$themeAccentGreenActive}
+
+#titlespace .fas
+	min-width: 27px
+
+.post
+	background-color: lighten( $themeActive, 2 )
+	display: flex
+	flex-direction: column
+	align-items: center
+	align-content: space-between
+	text-align: center
+	min-width: 350px
+	max-width: 500px
+	margin: 10px
+
+hr
+	margin-top: 10px
+	margin-bottom: 10px
+	border-color: var( --accent )
+	width: 90%
+	border-style: double
+
+.fill
+	width: 100%
+	padding: 0
+
+.flex.wrap
+	flex-wrap: wrap
+
+.flex.wrap > *
+	flex-grow: 1
+	flex-shrink: 1
+
+img
+	max-width: 100%
+	border-radius: 5px;
+
+.post img
+	width: 100%
+	border-radius: 15px
+	min-height: 400px
+	max-height: 400px
+	object-fit: cover
+	object-position: center
+
+#content > img
+	margin: auto
+	display: block
+
+.hljs-string, .hljs-meta-string
+	color: rgb( 129, 212, 250 ) !important
+
+.hljs-keyword, .hljs-built_in, .hljs-literal, .hljs-number
+	color: rgb( 255, 160, 0 ) !important
+
+.hljs-title
+	color: $textMain !important
+
+.hljs-meta
+	color: rgb( 121, 134, 203 ) !important
+
+.post > *:last-child
+	margin-top: auto
+
+*:is( .hljs-string, .hljs-meta-string, .hljs-keyword, .hljs-built_in, .hljs-literal, .hljs-number, .hljs-title ):hover
+	letter-spacing: 2px
+
+pre .button
+	font-family: $fonts
+	margin: 0
+	border-bottom-left-radius: 0
+	border-bottom-right-radius: 0
+	background-color: $themeActive
+	font-size: 0.8em

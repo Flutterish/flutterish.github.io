@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perigee</title>
+    <link href="/CSS/PastelTheme.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css">
+    <script src="https://kit.fontawesome.com/3171beee0f.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.2/markdown-it.min.js" integrity="sha512-7VN0JcGJWL+i8LXzTvbROqUSPzZIu8Fp6GWpkVwtHwrgWwY8CrbZgyHA2YpNhAASQNrYqGYoI2HusCqV+S2xnQ==" crossorigin="anonymous"></script>
+    <script src="/Scripts.js"></script>
+    <base target="_blank"/>
+</head>
+<body>
+    <div id="top-fade"></div>
+    <div id="squeeze">
+        <div id="header">
+            <img class="big logo" src="/logo.png" onclick="loadContent('/Home')">
+            <div class="flex left">
+                <div class="button" theme="home" onclick="loadContent('/Home')"><i class="fas fa-home"></i> Home<div class="selector"></div></div>
+                <div class="button" theme="gallery" onclick="loadContent('/Gallery')"><i class="fas fa-camera"></i> Gallery<div class="selector"></div></div>
+                <div class="button" theme="info" onclick="loadContent('/Info')"><i class="fas fa-question"></i> Info<div class="selector"></div></div>
+                <div class="button" theme="contact" onclick="loadContent('/Contact')"><i class="fas fa-envelope"></i> Get in touch<div class="selector"></div></div>
+            </div>
+            <div class="flex right">
+                <div class="button" theme="sign in" onclick="loadContent('/Sign In')">Sign in <i class="fas fa-user"></i><div class="selector"></div></div>
+            </div>
+        </div>
+        <div id="headerSpacer"></div>
+        <div id="titlespace">
+            <h2><i class="fas fa-exclamation-triangle"></i> | Javascript is Disabled</h2>
+        </div>
+        <div id="content">
+            <!-- Autoloaded with js -->
+            <p>
+                Seems you have turned off javascript. Unfortunately, this website requires it to function properly. <br>
+                Please turn it back on in your browser settings <a><i class="fas fa-heart"></i></a>
+            </p>
+        </div>
+        <div class="flex centered">
+            <a onclick="window.scrollTop()">Back to Top</a>
+        </div>
+        <div id="footer">
+            <div class="flex spread">
+                <div><img class="logo" src="/Gmail.png"><br><a href="mailto:CharmindYT@gmail.com">CharmindYT@gmail.com</a></div>
+                <div><img class="logo" src="/GitHub.png"><br><a href="https://github.com/Flutterish">Flutterish</a></div>
+                <div><img class="logo" src="/Discord.png"><br><a>Ponka donkas pinka dong#6747</a></div>
+                <div><img class="logo" src="/SO.png"><br><a href="https://stackoverflow.com/users/5459101/flutterish">Flutterish</a></div>
+            </div>
+            <div class="flex spread" style="width: 50%; margin: auto;">
+                <div>Copyright<sup>&copy;</sup> 2020-2020 <a>Perigee</a></div>
+                <div>Powered by <a>Whatever<sup>&trade;</sup></a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

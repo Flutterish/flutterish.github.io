@@ -1,0 +1,85 @@
+
+<title><i class="fas fa-terminal"></i> | Modern CLI</title>
+<meta title="Modern CLI">
+
+<img src="/Gallery/modernCLI_commands.jpg"> <hr>
+<md>
+    The era of writing
+    ```cs
+    if ( text.StartsWith( "CommandA " ) ) { ... }
+    else if ( text.StartsWith( "CommandB " ) ) { ... }
+    ...
+    ```
+    is over!
+
+    I've been mildly annoyed at having to do that for long enough. So, I've decided - it's about time I fix it.
+    The plan is simple:
+    ```cs
+    [Command]
+    [Description( "Shows help about commands and their syntax" )]
+    static void Help () {
+        var grid = new TextGrid();
+        grid.AddRow( "Name", "Syntax", "Description" ).AddRow();
+        foreach ( var command in Set.CurrentGroup.Commands ) {
+            grid.AddRow( command.Name, command.Pattern.GenerateSyntax(), command.Description() );
+        }
+        Console.WriteLine( grid.Format() );
+    }
+
+    [Command]
+    [Description( "Quits the app" )]
+    static void Exit () {
+        isRunning = false;
+    }
+
+    [Command]
+    [Description( "Echos the input back to the console" )]
+    static void Echo ( string input ) {
+        Console.WriteLine( input );
+    }
+    ...
+    ```
+    and
+    ```cs
+    static void Main () {
+        Set = CommandSet.FromAssemblyOf&lt;Program&gt;();
+        while ( isRunning ) {
+            var input = Console.ReadLine();
+            Console.WriteLine();
+            if ( !Set.TryRun( input ) ) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine( "Invalid command, try `Help`" );
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine();
+        }
+    }
+    ```
+    Basically, using [metaprogramming](https://en.wikipedia.org/wiki/Metaprogramming), I use attributes to tell that something
+    is a command, then by analizing the name and parameters, a set of commands is generated using my [Parametrizer](/Gallery/Parametrizer).
+
+    In the parametrizer article, I get more in depth how it all works, so I'll spare you that.
+
+    For now lets see what you can do with it:
+    * `[Command]` - This attribute is used to tell something is a command. It also accepts a `name` parameter, which by default is the same as the attached method.
+    * `[Dependency]` - This attribute makes a parameter resolve from the dependency table, without it the program attempts to parse it from text.
+    It is used to pass values around, so you don't need yucky global state.
+    * `[Description]` and `[DynamicDescription]` - As the name sugessts, these describe the command. Useful in the help menu.
+    The dynamic one is attached to a method that returns text, in turn allowing the description to change.
+    * `[Group]`, `[GroupDescription]` and `[SwitchesGroup]` - Organization is nice, and so this trio was born. The first
+    allows you to attach a command, or a whole class to one group or more. The second is obvious, but the third isn't.
+    The `[SwitchesGroup]`, attached to a method describes which groups this method can switch to, or all if empty.
+    In order to switch groups, the method needs to return a string, or if it returns void, it will switch
+    to the single specified group.
+    * `[Syntax]` - Allows you to define custom [parametrizer](/Gallery/Parametrizer) syntax to the whole method or a single parameter.
+
+    With that out of the way, the default way it handles parameters is pretty easy:
+    * The command name is required
+    * Any optional parameter is optional
+    * Any required parameter is required
+    * By default, parameters are described with their type
+    * It is not case censitive
+
+    So, that's pretty much it - a utility library that allows you to quickly and fluently create CLI commands
+    by just adding a single `[Command]` attribute.
+</md>

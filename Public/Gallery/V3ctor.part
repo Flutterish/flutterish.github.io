@@ -1,0 +1,31 @@
+
+<title><i class="fas fa-square-root-alt"></i> | V3ctor</title>
+<meta title="V3ctor">
+
+<md>
+    Math is one of these things people seem to hate, but it is one of my favourite parts
+    of programming.
+
+    I usually solve the problems on the go - as you do - but it would be nice to save some
+    generic solutions for later. And this is where V3ctor comes in.
+
+    V3ctor is a generic math library that allows you to fluently solve geometric
+    problems.
+    ```cs
+    var points = Parabola.With( a: -1, c: 0 ).SolveB.WhereTipY( 10 ).Intersect( Line.From( -10, 10 ).Through( 0, 0 ) );
+    ```
+    V3ctor is fully struct based, so heap allocations that reduce performance are non-existant.
+</md>
+<hr>
+<img src="/Gallery/parabola.jpg">
+<div class="flex centered">Picture: <a href="https://www.desmos.com/calculator">Desmos</a></div>
+<hr>
+<md>
+    Given just how many non-trivial operations exist, V3ctor is constantly growing.
+    In the case of intersection and closest points it is possible to [brute-force](https://en.wikipedia.org/wiki/Brute-force_attack)
+    a given domain in most cases, but that is obviously not optimal, and as such
+    I am constantly adding more and more math solutions to it.
+
+    You might not believe me, but [Desmos](https://www.desmos.com/calculator) - pictured above - is a really usefull tool.
+    Being able to visually see all the math going on helps you understand it, couldn't recommend more.
+</md>
