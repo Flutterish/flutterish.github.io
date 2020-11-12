@@ -24,4 +24,4 @@ express.static.mime.define({'text/html': ['html','htm','part']});
 
 app.use( express.static( 'Public' ) );
 
-app.listen( 80, () => console.log( 'running' ) );
+app.listen( process.env.PORT || 8080, () => console.log( 'running' ) );
