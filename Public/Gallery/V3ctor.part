@@ -17,7 +17,7 @@
     V3ctor is fully struct based, so heap allocations that reduce performance are non-existant.
 </md>
 <hr>
-<img src="/Gallery/parabola.jpg">
+<img src="/Gallery/Parabola.jpg">
 <div class="flex centered">Picture: <a href="https://www.desmos.com/calculator">Desmos</a></div>
 <hr>
 <md>
