@@ -2,5 +2,8 @@
     "main" : "nodeServer.js",
     "scripts": {
         "start": "node ./nodeServer.js"
+    },
+    "dependencies": {
+        "express": "*"
     }
 }
