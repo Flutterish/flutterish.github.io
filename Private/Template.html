@@ -16,7 +16,7 @@
     <div id="top-fade"></div>
     <div id="squeeze">
         <div id="header">
-            <img class="big logo" src="/logo.png" onclick="loadContent('/Home')">
+            <img class="big logo" alt="" src="/logo.png" onclick="loadContent('/Home')">
             <div class="flex left">
                 <div class="button" theme="home" onclick="loadContent('/Home')"><i class="fas fa-home"></i> Home<div class="selector"></div></div>
                 <div class="button" theme="gallery" onclick="loadContent('/Gallery')"><i class="fas fa-camera"></i> Gallery<div class="selector"></div></div>
@@ -29,27 +29,28 @@
         </div>
         <div id="headerSpacer"></div>
         <div id="titlespace">
-            <h2><i class="fas fa-exclamation-triangle"></i> | Javascript is Disabled</h2>
+            <noscript><h2><i class="fas fa-exclamation-triangle"></i> | Javascript is Disabled</h2></noscript>
         </div>
         <div id="content">
-            <!-- Autoloaded with js -->
-            <p>
-                Seems you have turned off javascript. Unfortunately, this website requires it to function properly. <br>
-                Please turn it back on in your browser settings <a><i class="fas fa-heart"></i></a>
-            </p>
+            <noscript>
+                <p>
+                    Seems you have turned off javascript. Unfortunately, this website requires it to function properly. <br>
+                    Please turn it back on in your browser settings <a><i class="fas fa-heart"></i></a>
+                </p>
+            </noscript>
         </div>
         <div class="flex centered">
             <a onclick="window.scrollTop()">Back to Top</a>
         </div>
         <div id="footer">
             <div class="flex spread">
-                <div><img class="logo" src="/Gmail.png"><br><a href="mailto:CharmindYT@gmail.com">CharmindYT@gmail.com</a></div>
-                <div><img class="logo" src="/GitHub.png"><br><a href="https://github.com/Flutterish">Peri</a></div>
-                <div><img class="logo" src="/Discord.png"><br><a>Perigee#6747</a></div>
-                <div><img class="logo" src="/SO.png"><br><a href="https://stackoverflow.com/users/5459101/flutterish">Flutterish</a></div>
+                <div><img class="logo" alt="Gmail" src="/Gmail.png"><br><a href="mailto:CharmindYT@gmail.com">CharmindYT@gmail.com</a></div>
+                <div><img class="logo" alt="Github" src="/GitHub.png"><br><a href="https://github.com/Flutterish">Peri</a></div>
+                <div><img class="logo" alt="Discord" src="/Discord.png"><br><a>Perigee#6747</a></div>
+                <div><img class="logo" alt="Stack Overflow" src="/SO.png"><br><a href="https://stackoverflow.com/users/5459101/flutterish">Flutterish</a></div>
             </div>
             <div class="flex spread" style="width: 50%; margin: auto;">
-                <div>Copyright<sup>&copy;</sup> 2020-2021 <a>Perigee</a></div>
+                <div>Copyright<sup>&copy;</sup> 2020-2022 <a>Perigee</a></div>
                 <div>Powered by <a href="https://www.heroku.com/">Heroku</a></div>
             </div>
         </div>
