@@ -12,4 +12,84 @@ Clicking on the logo will bring you to the <a theme="home" onclick="window.scrol
 Each main subsite has its own accent colour - <a theme="pink" onclick="SetTheme('pink')"><i class="fas fa-tint"></i> Pink,</a> <a theme="red" onclick="SetTheme('red')"><i class="fas fa-tint"></i> Red,</a> <a theme="orange" onclick="SetTheme('orange')"><i class="fas fa-tint"></i> Orange,</a> <a theme="yellow" onclick="SetTheme('yellow')"><i class="fas fa-tint"></i> Yellow</a> and <a theme="green" onclick="SetTheme('green')"><i class="fas fa-tint"></i> Green.</a> 
 Legends say there is also a hidden <secretTheme onclick="SetTheme('dark')">theme</secretTheme> - shhhh! <br>
 My name is <a>Perigee</a> because I might be the lowest I'll ever be, but I'm the lowest I'll ever be! <br>
-I created this website without a physical keyboard - I used only the onscreen one! Ouch...
+I created this website without a physical keyboard - I used only the onscreen one! Ouch... <br>
+
+<hr>
+
+<div class="guestbook">
+    <div>
+        <input type="text" name="comment-username" id="comment-username" placeholder="Username..." 
+            style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none;"><br>
+        <textarea name="comment-content" id="comment-content" cols="50" rows="4" placeholder="Leave a comment here if you want!" style="border-top-left-radius: 0; min-width: 180px;"></textarea> <br>
+        <div class="button" style="margin-left: 0;" onclick="sendComment()">Send <i class="fa-solid fa-share"></i> </div>
+    </div>
+</div>
+<div class="flex wrap fill spread" id="guestbook">
+    <template>
+        <div class="post">
+            <span> <a theme="dark">by:</a> <a>Peri</a> </span>
+            Hello, world!
+        </div>
+    </template>
+</div>
+<div class="flex centered" id="loadMoreGuestbook"><a onclick="loadNextGuestbookPage()">Load more</a></div> 
+<script>
+var guestbook = document.getElementById( 'guestbook' );
+function addPost ( i, prepend = false ) {
+    if ( i.name == null || i.name.length == 0 || i.text == null || i.text.length == 0 ) {
+        return false;
+    }
+
+    var post = document.createElement( 'div' );
+    post.classList.add( 'post' );
+    var span = document.createElement( 'span' );
+    var a = document.createElement( 'a' );
+    a.setAttribute( 'theme', 'dark' );
+    a.innerText = 'by: ';
+    span.appendChild( a );
+    a = document.createElement( 'a' );
+    a.innerText = i.name;
+    span.appendChild( a );
+    post.appendChild( span );
+    post.appendChild( document.createTextNode( i.text ) );
+
+    if ( prepend )
+        guestbook.prepend( post );
+    else
+        guestbook.appendChild( post );
+
+    return true;
+}
+
+var nextGuestbookIndex = 0;
+var loadingGuestbook = false;
+async function getGuestbook ( index = undefined ) {
+    if ( loadingGuestbook )
+        return;
+
+    loadingGuestbook = true;
+    var posts = JSON.parse( await Get( index == null ? '/Contact/guestbook' : `/Contact/guestbook?index=${index}` ) );
+    if ( posts.nextIndex == 0 ) {
+        document.getElementById( 'loadMoreGuestbook' ).innerHTML = '<a>No more comments to load!</a>';
+    }
+    nextGuestbookIndex = posts.nextIndex;
+    for ( const i of posts.data ) {
+        addPost( i );
+    }
+    loadingGuestbook = false;
+}
+getGuestbook();
+
+window.sendComment = () => {
+    var name = document.getElementById('comment-username').value;
+    var text = document.getElementById('comment-content').value;
+
+    if ( addPost( {name, text}, true ) ) {
+        Post( `/Contact/guestbook?name=${encodeURIComponent(name)}&text=${encodeURIComponent(text)}` );
+    }
+};
+
+window.loadNextGuestbookPage = () => {
+    getGuestbook( nextGuestbookIndex );
+};
+</script>

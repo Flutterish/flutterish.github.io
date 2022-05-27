@@ -238,6 +238,23 @@ window.addEventListener( 'load', () => {
 		} );
 	}
 
+    function Post ( path ) {
+		return new Promise( (res,rej) => {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if ( this.readyState == 4 && this.status == 200 ) {
+					res( this.responseText );
+				}
+				else if ( this.status == 404 ) {
+					rej( 404 );
+				}
+			};
+			xhttp.onerror = rej;
+			xhttp.open( 'POST', path, true );
+			xhttp.send();
+		} );
+	}
+
 	function removeIndentation ( str ) {
 		let lines = str.split( /^/gm );
 		let any = true;
