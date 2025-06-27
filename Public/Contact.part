@@ -7,7 +7,7 @@ Do you have sugesstions how to improve the website? <br>
 Do you just want to talk? <br> <br>
 Feel free to let me know at: <br>
 <ul>
-    <li><img class="inline logo" alt="Gmail" src="/Gmail.png"><a href="mailto:charmindyt@gmail.com">CharmindYT@gmail.com</a></li>
+    <li><img class="inline logo" alt="Gmail" src="/Gmail.png"><a href="mailto:periofthegee@gmail.com">periofthegee@gmail.com</a></li>
     <li><img class="inline logo" alt="Discord" src="/Discord.png"><a>Perigee#6747</a></li>
 </ul>
 <a><i class="fas fa-heart"></i></a> Your opinion matters! <a><i class="fas fa-heart"></i></a> <br>
@@ -15,7 +15,7 @@ Feel free to let me know at: <br>
 window.sendMail = () => {
     var title = document.getElementById('mail-subject').value || 'Heroku website feedback';
     var body = document.getElementById('mail-content').value;
-    window.location.href = `mailto:charmindyt@gmail.com?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:periofthegee@gmail.com?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 }
 </script>
 <hr>
