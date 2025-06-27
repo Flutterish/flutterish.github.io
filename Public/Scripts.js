@@ -6,7 +6,7 @@ window.addEventListener( 'load', () => {
 	window.titlespace = document.getElementById( 'titlespace' );
 	window.mainTitle = document.title;
 	begin();
-	loadContent( location.pathname, false );
+	loadContent( location.pathname.endsWith('/') ? location.pathname.substring(0, location.pathname.length - 1) : location.pathname, false );
 } );
 
 (function(){
