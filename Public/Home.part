@@ -11,12 +11,12 @@ You can click on any header to scroll it nicely into view. Try the one just abov
 Clicking on the logo will bring you to the <a theme="home" onclick="window.scrollTop(); SetTheme('pink');"><i class="fas fa-home"></i> Home</a> page. <br>
 Each main subsite has its own accent colour - <a theme="pink" onclick="SetTheme('pink')"><i class="fas fa-tint"></i> Pink,</a> <a theme="red" onclick="SetTheme('red')"><i class="fas fa-tint"></i> Red,</a> <a theme="orange" onclick="SetTheme('orange')"><i class="fas fa-tint"></i> Orange,</a> <a theme="yellow" onclick="SetTheme('yellow')"><i class="fas fa-tint"></i> Yellow</a> and <a theme="green" onclick="SetTheme('green')"><i class="fas fa-tint"></i> Green.</a> 
 Legends say there is also a hidden <secretTheme onclick="SetTheme('dark')">theme</secretTheme> - shhhh! <br>
-My name is <a>Perigee</a> because I might be the lowest I'll ever be, but I'm the lowest I'll ever be! <br>
+My name is <a>Perigee</a> because I might be the lowest I'll ever be, but I'm the lowest I'll ever be! (it comes from periapsis - the lowest point on an orbit) <br>
 I created this website without a physical keyboard - I used only the onscreen one! Ouch... <br>
 
-<hr>
+<!-- <hr> -->
 
-<div class="guestbook">
+<!-- <div class="guestbook">
     <div>
         <input type="text" name="comment-username" id="comment-username" placeholder="Username..." 
             style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none;"><br>
@@ -92,4 +92,4 @@ window.sendComment = () => {
 window.loadNextGuestbookPage = () => {
     getGuestbook( nextGuestbookIndex );
 };
-</script>
+</script> -->

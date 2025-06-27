@@ -28,6 +28,9 @@ window.addEventListener( 'load', () => {
 	};
 
 	window.loadContent = function ( path, saveHistory = true ) {
+        if ( path == '/' )
+            path = '/Home';
+
 		return new Promise( (res,rej) => {
 			GetContent( path ).then( x => {
 				loadContentState( x );
@@ -280,8 +283,4 @@ window.addEventListener( 'load', () => {
 	window.scrollTop = function () {
 		window.scrollTo( { top: 0, behavior: 'smooth' } );
 	}
-
-	setInterval( () => {
-		Get( '/ack' );
-	}, 5000 );
 })();

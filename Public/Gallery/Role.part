@@ -1,0 +1,142 @@
+
+<title><i class="fas fa-code"></i> | Role</title>
+<meta title="Role">
+
+<md>
+    Role is a programming language I'm working on.
+    The idea I had for it was such that I want it to be really low level while allowing
+    for really large abstractions. Basically, I need something with a small amount of
+    primitives with little to no limitations on how they can be combined.
+
+    It has a very minimal set of primitives:
+    * `[]` means data
+    * `{}` means code
+    * `<>` means "at compile time"
+    * `->` means function
+    * `:` means name
+    * `@` means location
+
+    And... that's basically it! You can do so much with just that.
+    ```role
+    val hello: "World" // constant declaration
+    val point: [x: f32, y: f32] // type
+    val here as point: [10, 20] // woah! did I just use a variable as a type???
+
+    val foo: point -> sum as f32: { // you're kidding at this point...
+        x + y
+    }
+
+    val print: import Std.IO.print
+    print&lt;foo(here)> // this prints "30" at compile time
+
+    // also, did you notice the lack of semicolons?
+
+    for(20): i -> { // this is not a real for loop: its an inlined higher order function
+        print(i)    // all function calls are necessarily inlined when they are a parameter
+    }               // after all - you passed a function, not a function pointer
+
+    val max: match(here):   // another higher order function - this time with varargs
+        {.x > .y} {.x}      // .field is a thing you can do
+        {.y}
+
+    val yx: here.[y, x] // why not
+    point[import Std.Hash] := [x: f32, y: f32] -> x + y // type classes (like rust traits)
+
+    // Std.Hash is a "symbol"
+
+    // generic function
+    val hash: [value: val T: Type with [import Std.Hash]] -> T[import Std.Hash](value)
+    // dependent types
+    val all: [a: val T: Type, b: T] -> a + b
+
+    val point3D: [T: Type] -> [x: T, y: T, z: T] // basically generic type
+    val myPoint: point3D&lt;u32>(1, 2, 3) // types can be called like functions
+
+    // names
+    val which: (val left: 10 + 20) > (val right: 20 - 10)
+        ? left
+        : right
+
+    // and some less impressive capabilties
+    [1, 2].add()    // Unified Function Call Syntax (from D)
+    1.add(2)        // subject as first argument
+    #add [1,2]      // turning add into a unary operator
+    [1,2] |> add    // pipe
+    val mult: *     // operators are just infix functions. this one is defined as [a: val T: Type, b: T] -> T: {...}
+    3 mult 2 // = 6 // infix notation also works for user defined functions
+
+    [x: 1, y: 2] with [y: 3, z: 4] // = [x: 1, y: 3, z: 4]
+    [1,2] * [3,4] // = [3,8]
+    ```
+
+    I am pretty proud of this syntax! There is some more but I won't get into that here.
+</md>
+<hr>
+<img src="/Gallery/role_parser.png">
+<hr>
+<md>
+    First thing I had to solve to make this real is a tokenizer (easy enough) and a parser.
+    I decided to go with a bottom-up approach. While there are parser generator libraries,
+    I wanted to write my own. It took a few days of research and messing around, but it totally
+    works - an canonical LR(1) parser that automatically substitutes "1:1" reduces in the input grammar.
+
+    The fun part about the 1:1 reduces is that normally they force a reduce immediately and that blocks
+    most other shift rules - but if you group everything 1:1-reducible to a given symbol, and then make
+    that many copies of rules that use that symbol and substitute it with any of the forms, and you remove
+    the original 1:1 reduces, this turns it into a canonical form and Just Works&trade;!
+
+    Of course you have to remember that you made that substitution when running the parser so that
+    it behaves as if the 1:1 reduce happened but thats actually trivial to do with how I encode the
+    AST. It also saves precious bytes of memory! Basically every node in the tree can be in one of 4
+    forms - token, node, reduced-token and reduced-node - all packed as a tagged union. Tokens are just
+    tokens, nodes are anything from a reduce rule, and reduced-* are created when a 1:1 reduce happens.
+    These save not only their symbol but also the symbol they started as. When you do a reduce
+    (and remember that all reduces in the output grammar are not 1:1), you go over elements you want
+    to reduce from, and if they dont match the "base rule", you know you have to 1:1 reduce them in-place.
+</md>
+<hr>
+<img src="/Gallery/role_parser_2.png">
+<hr>
+<md>
+    A really neat feature of the parser is that is can automatically detect a lot of common errors
+    without manually coding them in. There are actually 2 special cases it detects:
+    * Unexpected symbols
+    * Missing symbols
+
+    Basically, when it encounters a symbol it didnt expect - that is, a blank parse table entry - 
+    it checks if you forgot to close some construct. It determines this by something I call a
+    "closer symbol" - any rule with 3+ constituents is a "construct" 
+    (if it was 2+ you could have infinite loops with this rule), and if there is only one
+    token that makes it reduce, that is considered a "closer symbol". If a "closer symbol" exists,
+    it is added to the parse stack.
+
+    Otherwise, it will discard the invalid symbol (still saving it in the parse tree for reference).
+    Given the nature of bottom-up parsers, this usually correct because it considers the next token,
+    as well as the "possibly invalid" token. Actually, not even token - it can be a whole already reduced node.
+
+    Now, lets talk memory - because of the tree structure, with nodes having at least 2 branches,
+    the max amount of nodes is `(input tokens) * (1 + 0.5 + 0.25 + ...) // = 2x`, but because we
+    can add "closer symbols", this adds 1x for a total of 3x. If we do a pre-pass on token count,
+    we can preallocate memory to fit this whole tree. In reality this is going to be much smaller
+    than 3x, but better safe than sorry. If we need to cache it (as I do in my tests), we can just
+    compact it.
+</md>
+<hr>
+<md>
+    This language clearly needs some magic to exist because types are values and you need to compute
+    them somehow. Also compile time evaluation is a thing.
+
+    I created a model for the compiler to evaluate values while it is compiling. It's almost simple.
+    We basically just make each top-level value we want to evaluate an "async function" - a state machine
+    that can wait for prereqisite values to be computed, and we put that in an "event loop" and hope it
+    computes. Also the "awaits" add new prereqisites so it can be done iteratively.
+    If it doesn't compute, that means the code itself is incorrect so we can report an error.
+
+    Funnily enough, we can (without erroring) attempt to evaluate other values to save the runtime
+    work where possible.
+
+    As of now, this is where my work ended. In the future, I am going to make this compile with LLVM 
+    into native code, and maybe try to compile it to .NET IL to see how it fares with a JIT.
+
+    ###### 2025.06.27
+</md>

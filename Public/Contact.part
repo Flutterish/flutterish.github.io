@@ -21,7 +21,7 @@ window.sendMail = () => {
 <hr>
 If you want to quickly send an email, you can fill out this form here: <br>
 <div>
-    <input type="text" name="mail-subject" id="mail-subject" placeholder="Heroku website feedback" 
+    <input type="text" name="mail-subject" id="mail-subject" placeholder="Website feedback" 
         style="border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom: none;"><br>
     <textarea name="mail-content" id="mail-content" cols="100" rows="10" placeholder="Lorem ipsum dalor sit amet..." style="border-top-left-radius: 0; min-width: 180px;"></textarea> <br>
     <div class="button" style="margin-left: 0;" onclick="sendMail()">Send <i class="fa-solid fa-share"></i> </div>

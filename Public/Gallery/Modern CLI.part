@@ -82,4 +82,6 @@
 
     So, that's pretty much it - a utility library that allows you to quickly and fluently create CLI commands
     by just adding a single `[Command]` attribute.
+
+    ###### 2020.11.12
 </md>
