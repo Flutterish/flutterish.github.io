@@ -28,7 +28,7 @@ window.addEventListener( 'load', () => {
 	};
 
 	window.loadContent = function ( path, saveHistory = true ) {
-        if ( path == '/' )
+        if ( path == '' )
             path = '/Home';
 
 		return new Promise( (res,rej) => {
