@@ -97,7 +97,7 @@ Fetching posts...
         dateEl.setAttribute( 'style', 'position: absolute; top: 6px; right: 10px' );
 
         if ( text.length > 300 ) text = text.substr( 0, 297 ) + '...';
-        content.innerText = text;
+        content.innerHTML = ParseMD(text);
         el.appendChild( content );
 
         let link = document.createElement( 'a' );
