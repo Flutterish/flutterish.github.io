@@ -6,7 +6,7 @@ Hi, I'm <a>Perigee</a>! <a theme="pink">( she/her )</a> <br>
 I'm a hobbyist full-stack <a><i class="fas fa-terminal"></i></a> developer and a digital <a><i class="fas fa-paint-brush"></i></a> artist. <br>
 Natively, I speak <a>C#</a> and Polish, but English is a breeze to me - which naturally means my grammar deteriorated in both...
 <br><br>
-Currently, I don't really have much to show of myself - most of my projects are utility libraries for personal use. I show them off in the other tabs.<br>
+Currently, I don't really have much to show of myself - most of my projects are utility libraries for personal use. I show some of them off in the <a onclick="loadContent('/Gallery')" theme="gallery"><i class="fas fa-camera"></i> Gallery</a>.<br>
 Some of my projects that are avaiable online are:
 <ul>
     <li><a href="https://github.com/Flutterish/osu-XR">osu!xr</a> - A VR enviornment for <a href="https://github.com/ppy/osu">osu!lazer</a></li>
@@ -17,14 +17,21 @@ Some of my projects that are avaiable online are:
     <li><a href="https://github.com/LumpBloom7/hishigata">Hishigata</a> - Another custom ruleset for <a href="https://github.com/ppy/osu">osu!lazer</a> I helped <a href="https://github.com/LumpBloom7">🌸&#xFE0E;Bloom</a> develop</li>
     <li>This website, I guess</li>
 </ul>
-Among the many programming languages I've learned like:
+Among the many programming languages and technologies I've learned are:
 <ul>
-    <li><a><i class="fas fa-heart"></i> C#</a></li>
-    <li><a><i class="fas fa-microchip"></i> C++</a></li>
-    <li><a><i class="fab fa-python"></i> Python</a></li>
-    <li><a><i class="fas fa-fire-alt"></i> JavaScript (and typescript)</a></li>
-    <li><a><i class="fas fa-mug-hot"></i> Java</a></li>
-    <li>And many more...</li>
+    <li><a><i class="fas fa-heart"></i> C#</a> <br>&nbsp;&nbsp;<small>This is my primary one. I make stuff like VR, 3D graphics engines and compilers in it</small></li>
+    <li><a><i class="fas fa-fire-alt"></i> Javascript (and typescript)</a> <br>&nbsp;&nbsp;<small>I can do type wizardry. Ever seen the type system add numbers?</small></li>
+    <li><a><i class="fas fa-bolt"></i> Zig</a> <br>&nbsp;&nbsp;<small>I made a bare-metal "operating system" with virtual memory</small></li>
+    <li><a><i class="fas fa-volcano"></i> Vulkan</a> <br>&nbsp;&nbsp;<small>Forced me to code up a heap allocator. Did I mention I also made a decompiler for SPIR-V?</small></li>
+    <li><a><i class="fas fa-microchip"></i> C++</a> <br>&nbsp;&nbsp;<small>I use this one for microcontrollers</small></li>
+    <li><a><i class="fab fa-php"></i> PHP</a> <br>&nbsp;&nbsp;<small>I once made a .txt &rarr; .php compiler for a visual novel in this one</small></li>
+    <li><a><i class="fab fa-python"></i> Python</a> <br>&nbsp;&nbsp;<small>This bad boy sure can do both computer vision and incomprehensible types</small></li>
+    <li><a><i class="fas fa-mug-hot"></i> Java</a> <br>&nbsp;&nbsp;<small>Don't you love it when your ints are on the heap</small></li>
+    <li><a><i class="fas fa-database"></i> SQL</a> <br>&nbsp;&nbsp;<small>I prefer spreadsheets ;)</small></li>
+    <li><a><i class="fas fa-cube"></i> OpenGL</a> <br>&nbsp;&nbsp;<small>Beginners want results, experts want control. I use Vulkan</small></li>
+    <li><a><i class="fab fa-html5"></i> HTML5/CSS3</a> <br>&nbsp;&nbsp;<small>Obviously</small></li>
+    <li><a><i class="fas fa-moon"></i> Lua</a></li>
+    <li>And probably more!</li>
 </ul>
 I believe in an <a href="https://www.aoe.com/en/open-source.html">open-source</a> future, where all professional software is developed with passion over profit - "From artist to artist, with love". <br>
 A foolish dream to be sure - but as someone once said - "To change the world is to change yourself first". <br>
