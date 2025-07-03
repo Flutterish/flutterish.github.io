@@ -89,6 +89,13 @@ Fetching posts...
 
         let content = document.createElement( 'div' );
         let text = html.innerText.replace( /&gt;/g, '>' ).replace( /&lt;/g, '<' ).replace( /\n/g, ' ' );
+        let date = html.innerText.match( /##### (\d+\.\d+\.\d+)/ );
+
+        let dateEl = document.createElement( 'div' );
+        dateEl.innerHTML = `<small><a>${date[1]}</a></small>`;
+        el.appendChild( dateEl );
+        dateEl.setAttribute( 'style', 'position: absolute; top: 6px; right: 10px' );
+
         if ( text.length > 300 ) text = text.substr( 0, 297 ) + '...';
         content.innerText = text;
         el.appendChild( content );
