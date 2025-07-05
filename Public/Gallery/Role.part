@@ -58,8 +58,7 @@
         : right
 
     // and some less impressive capabilties
-    [1, 2].add()    // Unified Function Call Syntax (from D)
-    1.add(2)        // subject as first argument
+    1.add(2)        // Unified Function Call Syntax (from D)
     #add [1,2]      // turning add into a unary operator
     [1,2] |> add    // pipe
     val mult: *     // operators are just infix functions. this one is defined as [a: val T: Type, b: T] -> T: {...}
